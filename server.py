@@ -23,27 +23,28 @@ class UploadFileHandler(tornado.web.RequestHandler):
  
     def post(self):
         upload_path=os.path.join(os.path.dirname(__file__),'files')  #文件的暂存路径
-        if not self.request.files.has_key('file'):
+        file_metas = self.request.files.get("file", None)
+        if file_metas is None:
             self.render("upload.html", message=u"没有上传jpg文件哦", 
                     color="red", content=None)
             return
 
-        file_metas=self.request.files['file']    #提取表单中‘name’为‘file’的文件元数据
         file_uuid = uuid.uuid1().hex
 
         for meta in file_metas:
-            filename=file_uuid + '_' + meta['filename']
-            filepath=os.path.join(upload_path,filename)
-            with open(filepath,'wb') as up:      #有些文件需要已二进制的形式存储，实际中可以更改
+            filepath=os.path.join(upload_path, file_uuid + '_' + meta['filename'])
+            with open(filepath,'wb') as up:
                 up.write(meta['body'])
         
-        status, output = commands.getstatusoutput("jp2a --background=light --width=65 %s" % filepath)
+        code, out = commands.getstatusoutput("jp2a --background=light --width=65 %s" \
+                % filepath.encode("utf-8"))
 
-        if status <> 0:
-            self.render("upload.html", content=output, message="转换出错", color="red")
+        if code <> 0:
+            self.render("upload.html", content=out, message="转换出错, ErrCode:%d"\
+                    % status , color="red")
             return
 
-        self.render("upload.html", content=output, message="转换成功", color="green")
+        self.render("upload.html", content=out, message="转换成功", color="green")
  
 app=tornado.web.Application([
     (r'^/$',UploadFileHandler),
