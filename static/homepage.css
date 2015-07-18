@@ -22,8 +22,7 @@ html {
 
 #home .masthead {
   background-image: url(images/bg.jpg);
-  margin: 0em;
-  padding: 5rem 5rem;
+  padding: 5rem 0rem;
 }
 #home .masthead .column {
   position: relative;
@@ -37,7 +36,6 @@ html {
 #home .masthead .image {
   position: absolute;
   left: 0%;
-  bottom: -110px;
 }
 
 /*--------------
