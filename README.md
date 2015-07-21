@@ -37,6 +37,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-[1]:https://github.com/jackeyGao/JPG2Ascii/raw/master/ScreenCaptures/screenCapture-1.jpg
-[2]:https://github.com/jackeyGao/JPG2Ascii/raw/master/ScreenCaptures/screenCapture-2.jpg
+[1]:https://github.com/jackeyGao/JPG2Ascii/raw/master/ScreenCapture/screenCapture-1.jpg
+[2]:https://github.com/jackeyGao/JPG2Ascii/raw/master/ScreenCapture/screenCapture-1.jpg
 
